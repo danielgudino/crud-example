@@ -29,6 +29,54 @@ $(document).ready(function () {
             url: 'vendor/datatables/i18n/es-ES.json'
         },
 
+        // Distribución de la tabla: arriba los botones (B) y el buscador (f),
+        // luego el menú de "Mostrar N" (l), la tabla (tr), y abajo info (i) + paginación (p).
+        dom: "<'row mb-2'<'col-md-6'B><'col-md-6'f>>" +
+             "<'row mb-2'<'col-md-6'l>>" +
+             "<'row'<'col-12'tr>>" +
+             "<'row mt-2'<'col-md-5'i><'col-md-7'p>>",
+
+        // Botones para generar reportes.
+        // exportOptions: columns ':not(:last-child)' = NO exportamos la columna "Acciones".
+        buttons: [
+            {
+                extend: 'copyHtml5',
+                text: '<i class="bi bi-clipboard"></i> Copiar',
+                className: 'btn btn-sm btn-secondary',
+                exportOptions: { columns: ':not(:last-child)' }
+            },
+            {
+                extend: 'csvHtml5',
+                text: '<i class="bi bi-filetype-csv"></i> CSV',
+                title: 'animales',
+                className: 'btn btn-sm btn-secondary',
+                exportOptions: { columns: ':not(:last-child)' }
+            },
+            {
+                extend: 'excelHtml5',
+                text: '<i class="bi bi-file-earmark-excel"></i> Excel',
+                title: 'animales',
+                className: 'btn btn-sm btn-success',
+                exportOptions: { columns: ':not(:last-child)' }
+            },
+            {
+                extend: 'pdfHtml5',
+                text: '<i class="bi bi-file-earmark-pdf"></i> PDF',
+                title: 'Reporte de animales',
+                orientation: 'landscape', // horizontal: caben mejor las columnas
+                pageSize: 'A4',
+                className: 'btn btn-sm btn-danger',
+                exportOptions: { columns: ':not(:last-child)' }
+            },
+            {
+                extend: 'print',
+                text: '<i class="bi bi-printer"></i> Imprimir',
+                title: 'Reporte de animales',
+                className: 'btn btn-sm btn-primary',
+                exportOptions: { columns: ':not(:last-child)' }
+            }
+        ],
+
         // Qué columna muestra cada campo del JSON.
         columns: [
             { data: 'id' },

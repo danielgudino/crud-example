@@ -123,6 +123,19 @@ Columna de **Acciones** por cada fila:
 
 Arriba hay un **droplist** para filtrar: Todos / Solo activos / Solo inactivos.
 
+### Exportar / generar reportes
+
+Encima de la tabla hay botones para exportar los registros (sin la columna de Acciones):
+
+- **Copiar** — al portapapeles
+- **CSV** — archivo `.csv`
+- **Excel** — archivo `.xlsx`
+- **PDF** — reporte en PDF (horizontal)
+- **Imprimir** — vista lista para impresora
+
+Funciona **sin internet**: las librerías de exportación (Buttons, JSZip para Excel
+y pdfMake para PDF) están en `public/vendor/datatables-buttons/`.
+
 ---
 
 ## Cómo ejecutarlo
