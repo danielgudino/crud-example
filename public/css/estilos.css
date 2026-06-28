@@ -1,0 +1,25 @@
+/*
+ * estilos.css
+ * -----------
+ * Estilos propios de la aplicación.
+ * Bootstrap ya hace casi todo; aquí solo ajustamos detalles.
+ */
+
+body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Separación entre los botones de la columna Acciones */
+.btn-group .btn {
+    margin-right: 2px;
+}
+
+/* Que la tabla no quede pegada a los bordes de la tarjeta */
+table#tablaAnimales {
+    margin-top: 0.5rem;
+}
+
+/* Etiquetas de estado un poco más grandes */
+.badge {
+    font-size: 0.85rem;
+}

@@ -1,0 +1,92 @@
+<!--
+    Vista del FORMULARIO.
+    Este MISMO archivo sirve para 3 cosas, según las variables que envíe el controlador:
+      - Registrar : campos vacíos,   botón "Guardar"
+      - Consultar : campos llenos y BLOQUEADOS ({{disabled}} = "disabled"), sin botón
+      - Editar    : campos llenos y editables, botón "Actualizar"
+
+    Las variables {{...}} las reemplaza PHP antes de mostrar la página.
+-->
+
+<div class="card shadow-sm">
+    <div class="card-header bg-dark text-white">
+        <h4 class="m-0">{{titulo_form}}</h4>
+    </div>
+
+    <div class="card-body">
+        <!-- El "action" cambia: guardar (nuevo) o actualizar (editar) -->
+        <form action="index.php?action={{accion}}" method="POST">
+
+            <!-- id oculto: se usa al editar. En registro va vacío. -->
+            <input type="hidden" name="id" value="{{id}}">
+
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label class="form-label">Nombre</label>
+                    <input type="text" name="nombre" class="form-control" value="{{nombre}}" {{disabled}} required>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Especie</label>
+                    <input type="text" name="especie" class="form-control" value="{{especie}}" {{disabled}} required>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Raza</label>
+                    <input type="text" name="raza" class="form-control" value="{{raza}}" {{disabled}}>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label">Edad (años)</label>
+                    <input type="number" name="edad" class="form-control" value="{{edad}}" min="0" {{disabled}}>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label">Peso (kg)</label>
+                    <input type="number" step="0.01" name="peso" class="form-control" value="{{peso}}" min="0" {{disabled}}>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label">Género</label>
+                    <select name="genero" class="form-select" {{disabled}}>
+                        <option value="Macho"  {{sel_macho}}>Macho</option>
+                        <option value="Hembra" {{sel_hembra}}>Hembra</option>
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label">Color</label>
+                    <input type="text" name="color" class="form-control" value="{{color}}" {{disabled}}>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Fecha de ingreso</label>
+                    <input type="date" name="fecha_ingreso" class="form-control" value="{{fecha_ingreso}}" {{disabled}}>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Estado de salud</label>
+                    <input type="text" name="estado_salud" class="form-control" value="{{estado_salud}}" {{disabled}}>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Estado (activo/inactivo)</label>
+                    <select name="activo" class="form-select" {{disabled}}>
+                        <option value="1" {{sel_activo}}>Activo</option>
+                        <option value="0" {{sel_inactivo}}>Inactivo</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="mt-4 d-flex gap-2">
+                <a href="index.php?action=index" class="btn btn-secondary">
+                    <i class="bi bi-arrow-left"></i> Volver
+                </a>
+                <!-- En modo "consultar" este botón se oculta con la clase d-none -->
+                <button type="submit" class="btn btn-primary {{ocultar_boton}}">
+                    {{texto_boton}}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

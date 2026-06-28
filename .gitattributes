@@ -1,0 +1,7 @@
+# Forzar finales de línea Unix (LF) para evitar el error $'\r' en bash
+*.sh   text eol=lf
+*.sql  text eol=lf
+*.php  text eol=lf
+*.html text eol=lf
+*.css  text eol=lf
+*.js   text eol=lf

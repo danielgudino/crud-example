@@ -1,0 +1,5 @@
+# Si alguien entra a la carpeta sin archivo, abrir index.php
+DirectoryIndex index.php
+
+# No mostrar el listado de archivos de la carpeta
+Options -Indexes
