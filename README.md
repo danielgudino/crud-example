@@ -11,6 +11,13 @@ A diferencia del proyecto original (todo el PHP, HTML, CSS y SQL mezclado en un 
 
 Usa la **misma base de datos y tabla** del proyecto original (`catalogo_animales` / `animales`).
 
+## Vista previa
+
+![Listado de animales con DataTables](docs/captura-listado.png)
+
+El listado muestra paginación, buscador, filtro por estado y, en cada fila,
+los botones de consultar, editar, activar/desactivar y eliminar.
+
 ---
 
 ## ¿Qué es MVC? (en una frase)
