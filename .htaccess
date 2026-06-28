@@ -1,0 +1,5 @@
+# Usar index.php como página por defecto (redirige a public/)
+DirectoryIndex index.php
+
+# No mostrar el listado de archivos de la carpeta
+Options -Indexes
