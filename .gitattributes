@@ -1,7 +1,21 @@
-# Forzar finales de línea Unix (LF) para evitar el error $'\r' en bash
-*.sh   text eol=lf
-*.sql  text eol=lf
-*.php  text eol=lf
-*.html text eol=lf
-*.css  text eol=lf
-*.js   text eol=lf
+# --- Archivos de texto: siempre con finales de línea Unix (LF) ---
+# Así el mismo repo funciona igual en Linux, Windows y Mac.
+*.php   text eol=lf
+*.html  text eol=lf
+*.css   text eol=lf
+*.js    text eol=lf
+*.json  text eol=lf
+*.sql   text eol=lf
+*.sh    text eol=lf
+*.md    text eol=lf
+
+# --- Archivos binarios: que Git NO los toque (no normalizar saltos de línea) ---
+# Si Git los "normaliza", las fuentes e imágenes se corrompen.
+*.woff  binary
+*.woff2 binary
+*.ttf   binary
+*.eot   binary
+*.png   binary
+*.jpg   binary
+*.gif   binary
+*.ico   binary

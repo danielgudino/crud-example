@@ -24,9 +24,9 @@ $(document).ready(function () {
             dataSrc: 'data'
         },
 
-        // Traducción al español.
+        // Traducción al español (archivo local, sin internet).
         language: {
-            url: 'https://cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json'
+            url: 'vendor/datatables/i18n/es-ES.json'
         },
 
         // Qué columna muestra cada campo del JSON.

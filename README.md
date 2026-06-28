@@ -49,7 +49,8 @@ crud-example/
 │   ├── index.php               # Puerta de entrada (enrutador)
 │   ├── .htaccess
 │   ├── css/estilos.css
-│   └── js/animales.js          # DataTables + botones de acciones
+│   ├── js/animales.js          # DataTables + botones de acciones
+│   └── vendor/                 # Bootstrap, jQuery y DataTables LOCALES (sin internet)
 ├── sql/
 │   └── animales.sql            # Agrega la columna "activo"
 └── deploy.sh                   # Script para publicarlo en Apache
@@ -131,7 +132,7 @@ sudo bash deploy.sh
 
 Abre: **http://localhost/crud-example/public/**
 
-### Opción B — Manual
+### Opción B — Manual (Linux)
 
 ```bash
 # 1. Agregar la columna "activo" a la tabla
@@ -144,6 +145,21 @@ sudo chown -R www-data:www-data /var/www/html/crud-example
 
 Abre: **http://localhost/crud-example/public/**
 
+### Opción C — Windows (XAMPP)
+
+El proyecto funciona igual en Windows. El script `deploy.sh` es solo para Linux,
+en Windows se hace a mano (es muy fácil):
+
+1. Copia la carpeta del proyecto a `C:\xampp\htdocs\crud-example`
+2. Abre el panel de XAMPP y enciende **Apache** y **MySQL**
+3. Entra a `http://localhost/phpmyadmin` e **importa** el archivo `sql/animales.sql`
+   (o pega su contenido en la pestaña SQL)
+4. Abre: **http://localhost/crud-example/public/**
+
+> No hay que cambiar nada de código entre Linux y Windows: las rutas internas
+> son relativas o calculadas, y la conexión usa los mismos datos por defecto
+> (usuario `root`, sin contraseña).
+
 ---
 
 ## Seguridad (qué se mejoró respecto al original)
@@ -155,3 +171,43 @@ Abre: **http://localhost/crud-example/public/**
 
 > Nota: sigue siendo un ejemplo local. Para producción habría que añadir
 > autenticación, validación más estricta y tokens CSRF.
+
+---
+
+## Funciona sin internet (offline)
+
+Todas las librerías (Bootstrap, Bootstrap Icons, jQuery, DataTables y la
+traducción al español) están **descargadas** dentro de `public/vendor/`.
+No se usa ningún CDN, así que la aplicación funciona aunque no haya conexión.
+
+```
+public/vendor/
+├── bootstrap/          # bootstrap.min.css + bootstrap.bundle.min.js
+├── bootstrap-icons/    # CSS + fuentes (woff/woff2)
+├── datatables/         # CSS, JS y traducción es-ES.json
+└── jquery/             # jquery-3.7.1.min.js
+```
+
+Si algún día quieres actualizar una librería, solo reemplazas el archivo
+correspondiente dentro de `public/vendor/`.
+
+---
+
+## Portabilidad (Linux, Windows, Mac)
+
+El proyecto está pensado para correr en cualquier equipo sin cambios:
+
+- **Rutas de archivos PHP**: se calculan con `__DIR__` (ruta del propio archivo).
+  PHP acepta `/` también en Windows, así que `__DIR__ . '/../views/'` funciona
+  en los tres sistemas. No hay rutas absolutas tipo `/var/www` ni `C:\` en el código.
+- **Rutas de la web (CSS, JS, enlaces)**: son **relativas** (`vendor/...`,
+  `index.php?action=...`), así que funcionan sin importar en qué carpeta se publique.
+- **Finales de línea**: `.gitattributes` fuerza **LF** en los archivos de texto y
+  marca las fuentes como **binarias**, para que nada se corrompa al pasar de un SO a otro.
+- **Mayúsculas/minúsculas**: Linux distingue mayúsculas en los nombres de archivo
+  (Windows no). Los nombres están escritos siempre igual en el código y en el disco,
+  así que no hay sorpresas al mover el proyecto de Windows a Linux.
+- **`.editorconfig`**: mantiene el mismo formato (UTF-8, LF, indentación) en cualquier editor.
+
+> Lo único específico de cada sistema es **cómo se publica**: en Linux con `deploy.sh`
+> (o copiando a `/var/www/html`), y en Windows copiando a `C:\xampp\htdocs`.
