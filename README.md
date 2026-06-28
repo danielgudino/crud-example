@@ -124,7 +124,8 @@ Arriba hay un **droplist** para filtrar: Todos / Solo activos / Solo inactivos.
 Si ya tienes Apache + PHP + MariaDB corriendo:
 
 ```bash
-cd /home/cloudops/Work/IA/cursor/crud-example
+# Entra a la carpeta donde clonaste el repositorio
+cd crud-example
 sudo bash deploy.sh
 ```
 
@@ -136,8 +137,8 @@ Abre: **http://localhost/crud-example/public/**
 # 1. Agregar la columna "activo" a la tabla
 sudo mariadb -u root < sql/animales.sql
 
-# 2. Copiar a Apache
-sudo cp -a /home/cloudops/Work/IA/cursor/crud-example /var/www/html/crud-example
+# 2. Copiar a Apache (ejecuta esto desde dentro de la carpeta del proyecto)
+sudo cp -a . /var/www/html/crud-example
 sudo chown -R www-data:www-data /var/www/html/crud-example
 ```
 
